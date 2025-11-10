@@ -1,0 +1,194 @@
+:root {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --text: #e6eef8;
+  --muted: #9fb0c8;
+  --accent: #2dd4bf;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: linear-gradient(180deg,#071027 0%, #0f1724 100%);
+  color: var(--text);
+  padding: 20px;
+}
+
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+header .highlight {
+  color: var(--accent);
+}
+
+.top-controls { display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+.search-bar input, .analyzer input {
+  padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.02); color:var(--text); min-width:240px;
+}
+.analyzer { display:flex; gap:8px; align-items:center; }
+.analyzer button, .theme-toggle, .card .open-link {
+  background:var(--accent); color:#022; border:none; padding:8px 10px; border-radius:8px; cursor:pointer;
+}
+
+section h2 {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: calc(6 * 200px + 1rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+  padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 2px 8px rgba(2,6,23,0.6);
+}
+
+/* Make the whole card clickable */
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: #1f2437;
+  border: 1px solid #69a9ff;
+}
+
+.card h3, .card h4 {
+  margin:0 0 6px 0;
+  font-size:1rem;
+}
+
+.desc { margin:0 0 8px 0; color:var(--muted); }
+.desc.small { font-size:0.85rem; }
+
+.fav-btn { background:transparent; border:none; color:var(--accent); font-size:1.2rem; cursor:pointer; }
+
+.preview-wrap { margin-top:8px; height:220px; background:#071029; border-radius:6px; overflow:hidden; }
+.preview-wrap iframe { width:100%; height:100%; border:0; }
+
+.muted { color:var(--muted); padding:8px; }
+@media (max-width:600px) {
+  .top-controls { flex-direction:column; }
+  .preview-wrap { height:180px; }
+}
+
+.alpha-section {
+  margin: 20px 0;
+  padding: 6px 0;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+.alpha-header {
+  margin: 8px 0 12px;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  display: block;
+}
+
+.alpha-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* three columns per row */
+  gap: 12px;
+  align-items: start;
+}
+
+.alpha-cards .card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+  .alpha-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .alpha-cards { grid-template-columns: 1fr; }
+  .alpha-header { font-size: 1rem; }
+}
+
+#searchTools {
+  display: block;
+  width: 100%;
+}
+
+#searchTools .alpha-section {
+  width: 100%;
+  display: block;
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 18px 16px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  color: var(--muted);
+  background: linear-gradient(180deg, rgba(255,255,255,0.001), transparent);
+  width: 100%;
+}
+.site-footer .footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.site-footer p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+.site-footer .stay-safe {
+  color: var(--text);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.site-footer .social a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 8px;
+  font-weight: 600;
+}
+.site-footer .sep {
+  color: rgba(255,255,255,0.06);
+  margin: 0 6px;
+}
+
+@media (max-width: 600px) {
+  .site-footer .social a { display: inline-block; margin: 6px 6px; }
+}

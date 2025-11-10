@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSINT Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1><span class="highlight">OSINT</span> Dashboard</h1>
+        <h3><span class="highlight">ZeroDay</span> School</h3>
+        <!-- <button class="theme-toggle">🌗</button> -->
+    </header>
+
+    <section class="top-controls">
+        <div class="search-bar">
+            <input type="text" id="filterInput" placeholder="Filter tools..." />
+        </div>
+    </section>
+
+    <section class="favorites">
+        <h2>Your Favorites</h2>
+        <div class="cards" id="favorites"></div>
+    </section>
+
+    <section class="tools">
+        <h2>Search Tools</h2>
+        <div id="searchTools"></div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+          <h3 class="stay-safe">Stay safe | Stay Secure</h2>
+        <p>© <span id="year">2025</span> ZeroDay School. All rights reserved.</p>
+        <p class="social">
+          <a href="https://instagram.com/pavin__das" target="_blank" rel="noopener">Instagram</a>
+          <span class="sep">·</span>
+          <a href="https://github.com/PavinDas" target="_blank" rel="noopener">GitHub</a>
+          <span class="sep">·</span>
+          <a href="https://www.linkedin.com/in/pavin-das/" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="sep">·</span>
+          <a href="https://www.youtube.com/@zdsmalayalam" target="_blank" rel="noopener">YouTube</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
