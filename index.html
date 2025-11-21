@@ -1,211 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OSINT Dashboard - Comprehensive Intelligence Tools</title>
-    <meta
-      name="description"
-      content="Professional OSINT Dashboard with comprehensive cybersecurity and intelligence gathering tools"
-    />
-    <meta name="author" content="ZeroDay School" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    <meta name="description" content="Professional OSINT Dashboard with comprehensive cybersecurity and intelligence gathering tools">
+    <meta name="author" content="ZeroDay School">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <!-- Header -->
     <header class="header">
-      <div class="container">
-        <div class="header-top">
-          <div class="header-branding">
-            <div class="header-icon">
-              <img
-                src="zd.jpg"
-              >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </img>
+        <div class="container">
+            <div class="header-top">
+                <div class="header-branding">
+                    <div class="header-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="header-title">
+                            <span class="text-primary">OSINT</span> Dashboard
+                        </h1>
+                        <p class="header-subtitle">Comprehensive Intelligence Tools</p>
+                    </div>
+                </div>
+                <div class="badge" id="toolCount">0 Tools</div>
             </div>
-            <div>
-              <h1 class="header-title">
-                <span class="text-primary">OSINT</span> Dashboard
-              </h1>
-              <p class="header-subtitle">Comprehensive Intelligence Tools</p>
+            
+            <!-- Search Bar -->
+            <div class="search-wrapper">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search tools by name, description, or category..."
+                >
             </div>
-          </div>
-          <div class="badge" id="toolCount">0 Tools</div>
-
-          <h3 class="zd-header-title">
-            <span class="text-primary">ZeroDay</span> School
-          </h3>
         </div>
-
-        <!-- Search Bar -->
-        <div class="search-wrapper">
-          <svg
-            class="search-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.35-4.35"></path>
-          </svg>
-          <input
-            type="text"
-            id="searchInput"
-            class="search-input"
-            placeholder="Search tools by name, description, or category..."
-          />
-        </div>
-      </div>
     </header>
 
     <main class="main-content">
-      <div class="container">
-        <!-- Favorites Section -->
-        <section
-          id="favoritesSection"
-          class="section-favorites"
-          style="display: none"
-        >
-          <div class="section-header">
-            <div class="section-title-wrapper">
-              <svg
-                class="icon-star-filled"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                ></polygon>
-              </svg>
-              <h2>Your Favorites</h2>
-              <span class="badge-secondary" id="favCount">0</span>
-            </div>
-          </div>
-          <div id="favoritesGrid" class="tools-grid"></div>
-        </section>
+        <div class="container">
+            <!-- Favorites Section -->
+            <section id="favoritesSection" class="section-favorites" style="display: none;">
+                <div class="section-header">
+                    <div class="section-title-wrapper">
+                        <svg class="icon-star-filled" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <h2>Your Favorites</h2>
+                        <span class="badge-secondary" id="favCount">0</span>
+                    </div>
+                </div>
+                <div id="favoritesGrid" class="tools-grid"></div>
+            </section>
 
-        <!-- Empty Favorites State -->
-        <section
-          id="emptyFavoritesSection"
-          class="empty-favorites"
-          style="display: none"
-        >
-          <div class="card empty-card">
-            <div class="card-header">
-              <h3 class="card-title">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polygon
-                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                  ></polygon>
-                </svg>
-                No Favorites Yet
-              </h3>
-              <p class="card-description">
-                Click the star icon on any tool to add it to your favorites for
-                quick access
-              </p>
-            </div>
-          </div>
-        </section>
+            <!-- Empty Favorites State -->
+            <section id="emptyFavoritesSection" class="empty-favorites" style="display: none;">
+                <div class="card empty-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            No Favorites Yet
+                        </h3>
+                        <p class="card-description">
+                            Click the star icon on any tool to add it to your favorites for quick access
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-        <!-- All Tools Section -->
-        <section class="section-all-tools">
-          <div class="section-header">
-            <div class="section-title-wrapper">
-              <h2>All Tools</h2>
-              <span class="badge-secondary" id="filteredCount">0 tools</span>
-            </div>
-          </div>
-
-          <div id="noResultsMessage" class="no-results" style="display: none">
-            <div class="card empty-card">
-              <div class="card-content">
-                <p class="no-results-text">
-                  No tools found matching "<span id="searchTerm"></span>"
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div id="toolsContainer" class="tools-container"></div>
-        </section>
-      </div>
+            <!-- All Tools Section -->
+            <section class="section-all-tools">
+                <div class="section-header">
+                    <div class="section-title-wrapper">
+                        <h2>All Tools</h2>
+                        <span class="badge-secondary" id="filteredCount">0 tools</span>
+                    </div>
+                </div>
+                
+                <div id="noResultsMessage" class="no-results" style="display: none;">
+                    <div class="card empty-card">
+                        <div class="card-content">
+                            <p class="no-results-text">No tools found matching "<span id="searchTerm"></span>"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="toolsContainer" class="tools-container"></div>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <h3 class="footer-title">Stay Safe | Stay Secure</h3>
-          <p class="footer-copyright">
-            © <span id="year"></span> ZeroDay School. All rights reserved.
-          </p>
-          <div class="footer-links">
-            <a
-              href="https://instagram.com/pavin__das"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Instagram</a
-            >
-            <span class="footer-separator">•</span>
-            <a
-              href="https://github.com/PavinDas"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub</a
-            >
-            <span class="footer-separator">•</span>
-            <a
-              href="https://www.linkedin.com/in/pavin-das/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >LinkedIn</a
-            >
-            <span class="footer-separator">•</span>
-            <a
-              href="https://www.youtube.com/@zdsmalayalam"
-              target="_blank"
-              rel="noopener noreferrer"
-              >YouTube</a
-            >
-          </div>
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">Stay Safe | Stay Secure</h3>
+                <p class="footer-copyright">© <span id="year"></span> ZeroDay School. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://instagram.com/pavin__das" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <span class="footer-separator">•</span>
+                    <a href="https://github.com/PavinDas" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <span class="footer-separator">•</span>
+                    <a href="https://www.linkedin.com/in/pavin-das/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <span class="footer-separator">•</span>
+                    <a href="https://www.youtube.com/@zdsmalayalam" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
 
     <script src="tools.js"></script>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>

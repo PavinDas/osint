@@ -25,7 +25,6 @@ function init() {
     yearEl.textContent = new Date().getFullYear();
 }
 
-
 // Load favorites from localStorage
 function loadFavorites() {
     try {
@@ -62,7 +61,7 @@ function toggleFavorite(toolId) {
 
 // Open tool in new tab
 function openTool(tool) {
-    const url = tool.url;
+    const url = tool.url.replace('{query}', '');
     window.open(url, '_blank', 'noopener,noreferrer');
 }
 
