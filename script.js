@@ -19,10 +19,12 @@ const yearEl = document.getElementById('year');
 function init() {
     loadFavorites();
     updateToolCount();
+    updateFilteredCount();
     renderAll();
     setupEventListeners();
     yearEl.textContent = new Date().getFullYear();
 }
+
 
 // Load favorites from localStorage
 function loadFavorites() {
@@ -60,7 +62,7 @@ function toggleFavorite(toolId) {
 
 // Open tool in new tab
 function openTool(tool) {
-    const url = tool.url.replace('{query}', '');
+    const url = tool.url;
     window.open(url, '_blank', 'noopener,noreferrer');
 }
 
