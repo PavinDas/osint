@@ -50,13 +50,37 @@ function saveFavorites() {
 // Toggle favorite
 function toggleFavorite(toolId) {
     const index = favorites.indexOf(toolId);
-    if (index > -1) {
+    const wasFavorite = index > -1;
+
+    if (wasFavorite) {
         favorites.splice(index, 1);
     } else {
         favorites.push(toolId);
     }
+
     saveFavorites();
-    renderAll();
+
+    // Update UI without full re-render
+    updateFavoriteButtons(toolId, !wasFavorite);
+    renderFavorites();
+}
+
+// Update specific tool buttons in the DOM
+function updateFavoriteButtons(toolId, isFavorite) {
+    const buttons = document.querySelectorAll(`.star-btn[data-id="${toolId}"]`);
+    buttons.forEach(btn => {
+        if (isFavorite) {
+            btn.classList.add('active');
+            btn.setAttribute('title', 'Remove from favorites');
+            const svg = btn.querySelector('svg');
+            if (svg) svg.setAttribute('fill', 'currentColor');
+        } else {
+            btn.classList.remove('active');
+            btn.setAttribute('title', 'Add to favorites');
+            const svg = btn.querySelector('svg');
+            if (svg) svg.setAttribute('fill', 'none');
+        }
+    });
 }
 
 // Open tool in new tab
@@ -121,6 +145,7 @@ function createToolCard(tool, isFavorite = false) {
                 </div>
                 <button 
                     class="star-btn ${isFavorite ? 'active' : ''}" 
+                    data-id="${tool.id}"
                     onclick="event.stopPropagation(); toggleFavorite('${tool.id}')"
                     title="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}"
                 >
