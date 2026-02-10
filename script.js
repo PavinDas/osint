@@ -68,7 +68,7 @@ function openTool(tool) {
 // Filter tools based on search query
 function filterTools(query) {
     const searchTerm = query.toLowerCase().trim();
-    
+
     if (!searchTerm) {
         filteredTools = [...tools];
     } else {
@@ -78,7 +78,7 @@ function filterTools(query) {
             (tool.category && tool.category.toLowerCase().includes(searchTerm))
         );
     }
-    
+
     renderAllTools();
     updateFilteredCount();
 }
@@ -88,7 +88,7 @@ function groupToolsByLetter(toolsList) {
     const sorted = [...toolsList].sort((a, b) =>
         a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
     );
-    
+
     const grouped = {};
     sorted.forEach(tool => {
         const firstChar = tool.name[0].toUpperCase();
@@ -98,7 +98,7 @@ function groupToolsByLetter(toolsList) {
         }
         grouped[letter].push(tool);
     });
-    
+
     return grouped;
 }
 
@@ -136,19 +136,19 @@ function createToolCard(tool, isFavorite = false) {
 // Render favorites section
 function renderFavorites() {
     const favoriteTools = tools.filter(tool => favorites.includes(tool.id));
-    
+
     if (favoriteTools.length > 0) {
         favoritesSection.style.display = 'block';
         emptyFavoritesSection.style.display = 'none';
-        
+
         favoritesGrid.innerHTML = favoriteTools
             .map(tool => createToolCard(tool, true))
             .join('');
-        
+
         favCountEl.textContent = favoriteTools.length;
     } else {
         favoritesSection.style.display = 'none';
-        
+
         // Only show empty state if not searching
         if (!searchInput.value.trim()) {
             emptyFavoritesSection.style.display = 'block';
@@ -161,24 +161,24 @@ function renderFavorites() {
 // Render all tools grouped by letter
 function renderAllTools() {
     const searchTerm = searchInput.value.trim();
-    
+
     if (filteredTools.length === 0) {
         noResultsMessage.style.display = 'block';
         toolsContainer.style.display = 'none';
         searchTermEl.textContent = searchTerm;
         return;
     }
-    
+
     noResultsMessage.style.display = 'none';
     toolsContainer.style.display = 'flex';
-    
+
     const grouped = groupToolsByLetter(filteredTools);
     const letters = Object.keys(grouped).sort((a, b) => {
         if (a === '#') return 1;
         if (b === '#') return -1;
         return a.localeCompare(b);
     });
-    
+
     toolsContainer.innerHTML = letters.map(letter => `
         <div class="alpha-group">
             <div class="alpha-header">
@@ -186,9 +186,9 @@ function renderAllTools() {
                 <div class="alpha-divider"></div>
             </div>
             <div class="tools-grid">
-                ${grouped[letter].map(tool => 
-                    createToolCard(tool, favorites.includes(tool.id))
-                ).join('')}
+                ${grouped[letter].map(tool =>
+        createToolCard(tool, favorites.includes(tool.id))
+    ).join('')}
             </div>
         </div>
     `).join('');
@@ -215,6 +215,34 @@ function setupEventListeners() {
     searchInput.addEventListener('input', (e) => {
         filterTools(e.target.value);
     });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        if (header) {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    });
+
+    // Spotlight hover effect for cards (Performance optimized)
+    const container = document.querySelector('.main-content');
+    if (container) {
+        container.addEventListener('mousemove', (e) => {
+            const card = e.target.closest('.tool-card');
+            if (card) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        });
+    }
 }
 
 // Start the app
