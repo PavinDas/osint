@@ -191,12 +191,12 @@ body::before {
 }
 
 /* Search Styles */
+/* Search Styles */
 .search-wrapper {
     position: relative;
-    max-width: 500px;
-    width: 100%;
-    margin-left: auto;
-    /* Push to right on large screens */
+    max-width: 600px;
+    flex: 1;
+    margin: 0 2rem;
 }
 
 .search-icon {
@@ -593,12 +593,14 @@ body::before {
 @media (max-width: 768px) {
     .header-top {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        gap: 1rem;
     }
 
     .search-wrapper {
         max-width: 100%;
-        margin-left: 0;
+        margin: 0;
+        width: 100%;
     }
 
     .tools-grid {
