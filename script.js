@@ -83,22 +83,30 @@ function filterTools(query) {
     updateFilteredCount();
 }
 
-// Group tools by first letter
-function groupToolsByLetter(toolsList) {
-    const sorted = [...toolsList].sort((a, b) =>
-        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-    );
+// Format category name (e.g. "ai_and_llm" -> "AI and LLM")
+function formatCategory(category) {
+    if (!category) return 'Uncategorized';
+    return category
+        .split('_')
+        .map(word => {
+            if (['ai', 'llm', 'osint', 'ip', 'dns', 'url', 'saas', 'mac', 'vpn', 'rss', 'api', 'ioc', 'ttp', 'ssl', 'tls'].includes(word.toLowerCase())) {
+                return word.toUpperCase();
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+}
 
+// Group tools by category
+function groupToolsByCategory(toolsList) {
     const grouped = {};
-    sorted.forEach(tool => {
-        const firstChar = tool.name[0].toUpperCase();
-        const letter = /^[A-Z]$/.test(firstChar) ? firstChar : '#';
-        if (!grouped[letter]) {
-            grouped[letter] = [];
+    toolsList.forEach(tool => {
+        const cat = tool.category || 'miscellaneous';
+        if (!grouped[cat]) {
+            grouped[cat] = [];
         }
-        grouped[letter].push(tool);
+        grouped[cat].push(tool);
     });
-
     return grouped;
 }
 
@@ -159,6 +167,7 @@ function renderFavorites() {
 }
 
 // Render all tools grouped by letter
+// Render all tools grouped by category
 function renderAllTools() {
     const searchTerm = searchInput.value.trim();
 
@@ -172,21 +181,17 @@ function renderAllTools() {
     noResultsMessage.style.display = 'none';
     toolsContainer.style.display = 'flex';
 
-    const grouped = groupToolsByLetter(filteredTools);
-    const letters = Object.keys(grouped).sort((a, b) => {
-        if (a === '#') return 1;
-        if (b === '#') return -1;
-        return a.localeCompare(b);
-    });
+    const grouped = groupToolsByCategory(filteredTools);
+    const categories = Object.keys(grouped).sort();
 
-    toolsContainer.innerHTML = letters.map(letter => `
-        <div class="alpha-group">
-            <div class="alpha-header">
-                <div class="alpha-letter">${letter}</div>
-                <div class="alpha-divider"></div>
+    toolsContainer.innerHTML = categories.map(cat => `
+        <div class="category-group">
+            <div class="category-header">
+                <h2 class="category-title">${formatCategory(cat)}</h2>
+                <div class="category-divider"></div>
             </div>
             <div class="tools-grid">
-                ${grouped[letter].map(tool =>
+                ${grouped[cat].map(tool =>
         createToolCard(tool, favorites.includes(tool.id))
     ).join('')}
             </div>

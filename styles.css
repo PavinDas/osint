@@ -155,12 +155,14 @@ body::before {
     line-height: 1.1;
     letter-spacing: -0.02em;
     background: linear-gradient(to right, #fff, #94a3b8);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .header-title .text-primary {
     background: linear-gradient(to right, var(--primary), var(--secondary));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -487,43 +489,40 @@ body::before {
     transform: translateX(3px) translateY(-3px);
 }
 
-/* Alphabetical Sections */
+/* Tools Container */
 .tools-container {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    width: 100%;
 }
 
-.alpha-group {
-    position: relative;
+/* Category Groups */
+.category-group {
+    margin-bottom: 3rem;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-.alpha-header {
+.category-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
-.alpha-letter {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--background-lighter), var(--background));
-    border: 1px solid var(--primary-glow);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    font-weight: 800;
+.category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--primary);
-    box-shadow: 0 0 15px rgba(0, 242, 234, 0.15);
+    white-space: nowrap;
+    text-shadow: 0 0 15px rgba(0, 242, 234, 0.3);
 }
 
-.alpha-divider {
+.category-divider {
     flex: 1;
     height: 1px;
     background: linear-gradient(90deg, var(--primary-glow), transparent);
+    box-shadow: 0 0 10px rgba(0, 242, 234, 0.2);
 }
 
 /* Footer */
