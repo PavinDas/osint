@@ -276,6 +276,20 @@ const tools = [
   { id: 'you-com', name: 'YOU.com', desc: 'AI-assisted search', url: 'https://you.com/', category: 'search_engines' },
   { id: 'zarebin', name: 'Zarebin', desc: 'Iranian search', url: 'http://zarebin.ir', category: 'search_engines' },
 
+  // social_media
+  { id: 'facebook', name: 'Facebook', desc: 'Social networking platform', url: 'https://www.facebook.com/', category: 'social_media' },
+  { id: 'instagram', name: 'Instagram', desc: 'Photo / video sharing', url: 'https://www.instagram.com/', category: 'social_media' },
+  { id: 'x-twitter', name: 'X (Twitter)', desc: 'Real-time news & social networking', url: 'https://twitter.com/', category: 'social_media' },
+  { id: 'linkedin', name: 'LinkedIn', desc: 'Professional networking', url: 'https://www.linkedin.com/', category: 'social_media' },
+  { id: 'pinterest', name: 'Pinterest', desc: 'Visual discovery engine', url: 'https://www.pinterest.com/', category: 'social_media' },
+  { id: 'whatsapp-web', name: 'WhatsApp Web', desc: 'Messaging platform', url: 'https://web.whatsapp.com/', category: 'social_media' },
+  { id: 'telegram-web', name: 'Telegram Web', desc: 'Messaging platform', url: 'https://web.telegram.org/', category: 'social_media' },
+  { id: 'reddit', name: 'Reddit', desc: 'Discussion forum', url: 'https://www.reddit.com/', category: 'social_media' },
+  { id: 'tiktok', name: 'TikTok', desc: 'Short-form video', url: 'https://www.tiktok.com/', category: 'social_media' },
+  { id: 'snapchat', name: 'Snapchat', desc: 'Multimedia messaging', url: 'https://www.snapchat.com/', category: 'social_media' },
+  { id: 'threads', name: 'Threads', desc: 'Text-based conversation app', url: 'https://www.threads.net/', category: 'social_media' },
+  { id: 'arattai', name: 'Arattai', desc: 'Indian messaging app', url: 'https://www.arattai.in/', category: 'social_media' },
+
   // social_media_intelligence
   { id: 'hoaxy', name: 'Hoaxy', desc: 'Misinformation tracker', url: 'https://hoaxy.osome.iu.edu/', category: 'social_media_intelligence' },
   { id: 'instaloader', name: 'Instaloader', desc: 'Instagram downloader', url: 'https://github.com/instaloader/instaloader', category: 'social_media_intelligence' },

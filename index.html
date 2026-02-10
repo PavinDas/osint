@@ -44,6 +44,18 @@
                         placeholder="Search tools by name, description, or category...">
                 </div>
 
+                <button id="showCategoriesBtn" class="btn-glass">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                    Categories
+                </button>
                 <div class="badge" id="toolCount">0 Tools</div>
             </div>
         </div>
@@ -51,6 +63,21 @@
 
     <main class="main-content">
         <div class="container">
+            <!-- Categories Navigation Section -->
+            <section id="categoryNavSection" class="category-nav-section" style="display: none;">
+                <div class="category-nav-header">
+                    <h3>Jump to Category</h3>
+                    <button id="closeCategoriesBtn" class="btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div id="categoryButtonsContainer" class="category-buttons-grid"></div>
+            </section>
+
             <!-- Favorites Section -->
             <section id="favoritesSection" class="section-favorites" style="display: none;">
                 <div class="section-header">

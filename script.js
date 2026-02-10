@@ -253,6 +253,74 @@ function setupEventListeners() {
 // Start the app
 init();
 
+// Category Navigation
+const showCategoriesBtn = document.getElementById('showCategoriesBtn');
+const categoryNavSection = document.getElementById('categoryNavSection');
+const closeCategoriesBtn = document.getElementById('closeCategoriesBtn');
+const categoryButtonsContainer = document.getElementById('categoryButtonsContainer');
+
+function toggleCategoryNav() {
+    if (categoryNavSection.style.display === 'none') {
+        renderCategoryButtons();
+        categoryNavSection.style.display = 'block';
+        showCategoriesBtn.classList.add('active');
+        // Scroll to top to show categories
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    } else {
+        categoryNavSection.style.display = 'none';
+        showCategoriesBtn.classList.remove('active');
+    }
+}
+
+function renderCategoryButtons() {
+    const categories = [...new Set(tools.map(tool => tool.category || 'miscellaneous'))].sort();
+
+    categoryButtonsContainer.innerHTML = categories.map(cat => `
+        <button class="category-btn" onclick="scrollToCategory('${cat}')">
+            ${formatCategory(cat)}
+        </button>
+    `).join('');
+}
+
+function scrollToCategory(category) {
+    const categoryHeaders = document.querySelectorAll('.category-title');
+    let targetHeader = null;
+
+    for (const header of categoryHeaders) {
+        if (header.textContent === formatCategory(category)) {
+            targetHeader = header;
+            break;
+        }
+    }
+
+    if (targetHeader) {
+        // Close category menu on selection
+        categoryNavSection.style.display = 'none';
+
+        // Scroll to element with offset for fixed header
+        const headerOffset = 100;
+        const elementPosition = targetHeader.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
+}
+
+// Event Listeners for Category Nav
+if (showCategoriesBtn) {
+    showCategoriesBtn.addEventListener('click', toggleCategoryNav);
+}
+
+if (closeCategoriesBtn) {
+    closeCategoriesBtn.addEventListener('click', toggleCategoryNav);
+}
+
 // Scroll to top functionality
 const scrollToTopBtn = document.createElement('button');
 scrollToTopBtn.className = 'scroll-to-top';
