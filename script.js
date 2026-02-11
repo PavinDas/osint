@@ -113,7 +113,7 @@ function formatCategory(category) {
     return category
         .split('_')
         .map(word => {
-            if (['ai', 'llm', 'osint', 'ip', 'dns', 'url', 'saas', 'mac', 'vpn', 'rss', 'api', 'ioc', 'ttp', 'ssl', 'tls'].includes(word.toLowerCase())) {
+            if (['ai', 'llm', 'osint', 'ip', 'dns', 'url', 'saas', 'mac', 'vpn', 'rss', 'api', 'ioc', 'ttp', 'ssl', 'tls', 'gps', 'gnss'].includes(word.toLowerCase())) {
                 return word.toUpperCase();
             }
             return word.charAt(0).toUpperCase() + word.slice(1);
